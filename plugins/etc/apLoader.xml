@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<?xml-stylesheet type="text/xsl" href=""?>
+
+<plugin>
+    <name>apLoader</name>
+    <creationDate>2010-02-23</creationDate>
+    <author>AdserverPlugins.com</author>
+    <authorEmail>info@adserverplugins.com</authorEmail>
+    <authorUrl>http://www.adserverplugins.com/</authorUrl>
+    <license><![CDATA[
+        <a href="http://www.adserverplugins.com/about/license">SLA</a>
+    ]]></license>
+    <description>AdserverPlugins.com Loader Plugin</description>
+    <version>0.9.6-beta</version>
+    <oxversion>2.8.0</oxversion>
+    <type>extension</type>
+    <install>
+
+        <contents>
+            <group name="apLoader">1</group>
+        </contents>
+
+    </install>
+    <readme>
+    </readme>
+</plugin>
