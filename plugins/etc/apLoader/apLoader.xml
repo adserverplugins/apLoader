@@ -11,7 +11,7 @@
         <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-No Derivative Works 3.0 Unported</a>
     ]]></license>
     <description>AdserverPlugins.com Loader Plugin</description>
-    <version>0.9.6-beta</version>
+    <version>0.9.9-beta</version>
     <oxversion>2.8.0</oxversion>
     <extends>admin</extends>
     <install>

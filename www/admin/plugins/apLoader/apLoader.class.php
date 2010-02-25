@@ -1,7 +1,6 @@
 <?php
 
 require_once LIB_PATH.'/Plugin/Component.php';
-require_once LIB_PATH . '/Admin/Redirect.php';
 
 class Plugins_admin_apLoader_apLoader extends OX_Component
 {
@@ -12,11 +11,6 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
         if (OA_Permission::isUserLinkedToAdmin()) {
             self::scheduleRegisterNotification();
         }
-    }
-
-    public function apLoaderHook()
-    {
-        return true;
     }
 
     public function onEnable()
@@ -61,10 +55,10 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
             return;
         }
         $oMenu = OA_Admin_Menu::singleton();
-        $aPlugins = OX_Component::getListOfRegisteredComponentsForHook('apLoaderHook');
+        $aPlugins = OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry');
         foreach ($aPlugins as $id) {
             if ($obj = OX_Component::factoryByComponentIdentifier($id)) {
-                if ($obj->apLoaderHook()) {
+                if ($obj->apLoaderMenuEntry()) {
                     $oMenu->addTo(
                         'adserverplugins',
                         new OA_Admin_Menu_Section(
