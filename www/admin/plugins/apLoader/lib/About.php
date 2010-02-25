@@ -21,12 +21,14 @@ class AP_Loader_About
         }
     }
 
-    static public function display()
+    public function display()
     {
         OA_Permission::enforceAccount(OA_ACCOUNT_ADMIN);
         MAX_commonSetNoCacheHeaders();
 
-        self::updateMenu();
+        $oLoader = OX_Component::factory('admin', 'apLoader');
+        $oLoader->updateMenu();
+
         phpAds_PageHeader('apAbout-'.$this->plugin, '', '../../');
 
         if ($this->encoded) {

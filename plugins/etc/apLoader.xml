@@ -11,7 +11,7 @@
         <a href="http://www.adserverplugins.com/about/license">SLA</a>
     ]]></license>
     <description>AdserverPlugins.com Loader Plugin</description>
-    <version>1.0.0-rc2</version>
+    <version>1.0.0</version>
     <oxversion>2.8.0</oxversion>
     <type>extension</type>
     <install>

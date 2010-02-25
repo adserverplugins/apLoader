@@ -17,14 +17,15 @@ OA_Permission::enforceAccount(OA_ACCOUNT_ADMIN);
 MAX_commonSetNoCacheHeaders();
 
 // Update menu
-Plugins_admin_apLoader_apLoader::updateMenu();
+$oLoader = OX_Component::factory('admin', 'apLoader');
+$oLoader->updateMenu();
 
 // OB
 ob_start();
 
 // SG How-to
 if (function_exists('sg_load')) {
-    Plugins_admin_apLoader_apLoader::removeRegisterNotification();
+    $oLoader->removeRegisterNotification();
 ?>
     <h3>The Sourceguardian extension is correctly installed.</h3>
 

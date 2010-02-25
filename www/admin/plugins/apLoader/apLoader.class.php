@@ -9,25 +9,25 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
     public function afterLogin()
     {
         if (OA_Permission::isUserLinkedToAdmin()) {
-            self::scheduleRegisterNotification();
+            $this->scheduleRegisterNotification();
         }
     }
 
     public function onEnable()
     {
-        self::scheduleRegisterNotification();
+        $this->scheduleRegisterNotification();
         return true;
     }
 
     public function onDisable()
     {
-        self::removeRegisterNotification();
+        $this->removeRegisterNotification();
         return true;
     }
 
-    static public function scheduleRegisterNotification()
+    public function scheduleRegisterNotification()
     {
-        self::removeRegisterNotification();
+        $this->removeRegisterNotification();
 
         if (!function_exists('sg_load')) {
             $url = MAX::constructURL(MAX_URL_ADMIN, 'plugins/apLoader/');
@@ -42,14 +42,14 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
 
     }
 
-    static public function removeRegisterNotification()
+    public function removeRegisterNotification()
     {
         OA_Admin_UI::getInstance()
             ->getNotificationManager()
             ->removeNotifications(self::$REGISTER_NAME);
     }
 
-    static public function updateMenu()
+    public function updateMenu()
     {
         if (!function_exists('sg_load')) {
             return;
