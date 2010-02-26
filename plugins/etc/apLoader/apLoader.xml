@@ -11,7 +11,7 @@
         <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-No Derivative Works 3.0 Unported</a>
     ]]></license>
     <description>AdserverPlugins.com Loader Plugin</description>
-    <version>1.0.0</version>
+    <version>1.1.0</version>
     <oxversion>2.8.0</oxversion>
     <extends>admin</extends>
     <install>
@@ -21,6 +21,8 @@
             <file path="{ADMINPATH}/">index.php</file>
 
             <file path="{ADMINPATH}/lib/">About.php</file>
+            <file path="{ADMINPATH}/lib/">Component.php</file>
+
             <file path="{ADMINPATH}/sg/">howto-install.php</file>
         </files>
 

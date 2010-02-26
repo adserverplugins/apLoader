@@ -5,7 +5,9 @@ class AP_Loader_About
     protected $plugin;
     protected $encoded;
     protected $license;
-    protected $expiry;
+    protected $expiryTimestamp;
+    protected $expiryDate;
+    protected $expiryDays;
 
     public function __construct($plugin)
     {
@@ -17,15 +19,26 @@ class AP_Loader_About
             $expiry = sg_get_const('expire_date');
 
             $this->license = $license ? $license : 'n/a';
-            $this->expiry  = $expiry ? date('Y-m-d H:i:s', $expiry) : 'n/a';
+            $this->expiryTimestamp = $expiry;
+            $this->expiryDate = $expiry ? date('Y-m-d H:i:s', $expiry) : 'n/a';
+            $this->expiryDays = $expiry ? floor(($expiry - time()) / 86400) : 'n/a';
+        }
+    }
+
+    public function handleRequest($aGet)
+    {
+        OA_Permission::enforceAccount(OA_ACCOUNT_ADMIN);
+        MAX_commonSetNoCacheHeaders();
+
+        if (empty($aGet['expiry'])) {
+            $this->display();
+        } else {
+            echo $this->expiryTimestamp;
         }
     }
 
     public function display()
     {
-        OA_Permission::enforceAccount(OA_ACCOUNT_ADMIN);
-        MAX_commonSetNoCacheHeaders();
-
         $oLoader = OX_Component::factory('admin', 'apLoader');
         $oLoader->updateMenu();
 
@@ -36,7 +49,8 @@ class AP_Loader_About
             <h4>This plugin is encoded</h4>
             <ul>
                 <li>Licensed to: <?php echo $this->license; ?></li>
-                <li>Expire date: <?php echo $this->expiry; ?></li>
+                <li>Expire date: <?php echo $this->expiryDate; ?></li>
+                <li>Days remaining: <?php echo $this->expiryDays; ?></li>
             </ul>
             <?php
         } else {

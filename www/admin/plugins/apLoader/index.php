@@ -25,7 +25,7 @@ ob_start();
 
 // SG How-to
 if (function_exists('sg_load')) {
-    $oLoader->removeRegisterNotification();
+    $oLoader->scheduleRegisterNotification();
 ?>
     <h3>The Sourceguardian extension is correctly installed.</h3>
 

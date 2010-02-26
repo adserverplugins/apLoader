@@ -1,6 +1,6 @@
 <?php
 
-require_once LIB_PATH.'/Plugin/Component.php';
+require_once MAX_PATH.'/www/admin/plugins/apLoader/lib/Component.php';
 
 class Plugins_admin_apLoader_apLoader extends OX_Component
 {
@@ -25,6 +25,18 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
         return true;
     }
 
+    protected function getExpiringPlugins()
+    {
+        $aPlugins = OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry');
+        $aResult = array();
+        foreach ($aPlugins as $id) {
+            list(, , $component) = OX_Component::parseComponentIdentifier($id);
+            $expiry = OA_Dal_ApplicationVariables::get(AP_Loader_Component::VAR_PREFIX.$component);
+            $aResult[$id] = $expiry;
+        }
+        return $aResult;
+    }
+
     public function scheduleRegisterNotification()
     {
         $this->removeRegisterNotification();
@@ -38,6 +50,12 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
             OA_Admin_UI::getInstance()
                 ->getNotificationManager()
                 ->queueNotification($message, 'warning', self::$REGISTER_NAME);
+        } else {
+            foreach ($this->getExpiringPlugins() as $id => $expiry) {
+                if ($obj = OX_Component::factoryByComponentIdentifier($id)) {
+                    $this->notifyPluginExpiry($obj, $expiry);
+                }
+            }
         }
 
     }
@@ -47,6 +65,37 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
         OA_Admin_UI::getInstance()
             ->getNotificationManager()
             ->removeNotifications(self::$REGISTER_NAME);
+
+        if (function_exists('sg_load')) {
+            foreach (OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry') as $id) {
+                if ($obj = OX_Component::factoryByComponentIdentifier($id)) {
+                    $this->notifyPluginExpiry($obj, false);
+                }
+            }
+        }
+    }
+
+    public function notifyPluginExpiry($obj, $expiry)
+    {
+        $register = self::$REGISTER_NAME.'_'.$obj->component;
+        if ($expiry) {
+            $url = MAX::constructURL(MAX_URL_ADMIN, "plugins/{$obj->group}/about.php");
+            $days = floor(($expiry - time()) / 84600);
+            if ($days >= 0) {
+                $message = "The {$obj->component} plugin will expire in {$days} day(s).";
+            } else {
+                $message = "The {$obj->component} plugin is expired.";
+            }
+            $message .= "<br /><a href=\"{$url}\">Read details &raquo;</a>";
+
+            OA_Admin_UI::getInstance()
+                ->getNotificationManager()
+                ->queueNotification($message, 'warning', $register);
+        } else {
+            OA_Admin_UI::getInstance()
+                ->getNotificationManager()
+                ->removeNotifications($register);
+        }
     }
 
     public function updateMenu()
