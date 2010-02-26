@@ -80,7 +80,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
         $register = self::$REGISTER_NAME.'_'.$obj->component;
         if ($expiry) {
             $url = MAX::constructURL(MAX_URL_ADMIN, "plugins/{$obj->group}/about.php");
-            $days = floor(($expiry - time()) / 84600);
+            $days = floor(($expiry - time()) / 86400);
             if ($days >= 0) {
                 $message = "The {$obj->component} plugin will expire in {$days} day(s).";
             } else {
