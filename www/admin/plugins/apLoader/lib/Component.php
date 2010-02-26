@@ -9,7 +9,7 @@ class AP_Loader_Component extends OX_Component
 
     public function onEnable()
     {
-        $url = MAX::constructURL(MAX_URL_ADMIN, "plugins/{$this->component}/about.php?expiry=1");
+        $url = MAX::constructURL(MAX_URL_ADMIN, "plugins/{$this->group}/about.php?expiry=1");
 
         $ctx = stream_context_create(array('http' => array(
             'method' => 'GET',
