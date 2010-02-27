@@ -1,7 +1,12 @@
 <?php
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
+
+/**
+ * apLoader for the OpenX ad server
+ *
+ * @author Matteo Beccati
+ * @copyright 2010 AdserverPlugins.com - All rights reserved
+ *
+ * $Id$
  */
 
 // Prepare the OpenX environment via standard external OpenX scripts

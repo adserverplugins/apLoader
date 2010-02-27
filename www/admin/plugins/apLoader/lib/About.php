@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * apLoader for the OpenX ad server
+ *
+ * @author Matteo Beccati
+ * @copyright 2010 AdserverPlugins.com - All rights reserved
+ *
+ * $Id$
+ */
+
 class AP_Loader_About
 {
     protected $plugin;

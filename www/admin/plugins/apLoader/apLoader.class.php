@@ -1,5 +1,14 @@
 <?php
 
+/**
+ * apLoader for the OpenX ad server
+ *
+ * @author Matteo Beccati
+ * @copyright 2010 AdserverPlugins.com - All rights reserved
+ *
+ * $Id$
+ */
+
 require_once MAX_PATH.'/www/admin/plugins/apLoader/lib/Component.php';
 
 class Plugins_admin_apLoader_apLoader extends OX_Component
