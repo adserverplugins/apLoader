@@ -19,13 +19,13 @@ MAX_commonSetNoCacheHeaders();
 // Update menu
 $oLoader = OX_Component::factory('admin', 'apLoader');
 $oLoader->updateMenu();
+$oLoader->scheduleRegisterNotification();
 
 // OB
 ob_start();
 
 // SG How-to
 if (function_exists('sg_load')) {
-    $oLoader->scheduleRegisterNotification();
 ?>
     <h3>The Sourceguardian extension is correctly installed.</h3>
 
@@ -33,7 +33,6 @@ if (function_exists('sg_load')) {
         AdserverPlugins.com.</p>
 <?php
 } else {
-    Plugins_admin_apLoader_apLoader::scheduleRegisterNotification();
 ?>
     <h3>The Sourceguardian extension is not installed.</h3>
 
