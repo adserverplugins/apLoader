@@ -9,7 +9,7 @@
  * $Id$
  */
 
-class AP_Loader_About
+abstract class AP_Loader_About
 {
     protected $plugin;
     protected $encoded;
@@ -18,14 +18,16 @@ class AP_Loader_About
     protected $expiryDate;
     protected $expiryDays;
 
+    abstract protected function getConst($const);
+
     public function __construct($plugin)
     {
         $this->plugin = $plugin;
-        $this->encoded = function_exists('sg_get_const') && sg_get_const('encoder');
+        $this->encoded = function_exists('sg_get_const') && $this->getConst('encoder');
 
         if ($this->encoded) {
-            $license = sg_get_const('licensed_to');
-            $expiry = sg_get_const('expire_date');
+            $license = $this->getConst('licensed_to');
+            $expiry = $this->getConst('expire_date');
 
             $this->license = $license ? $license : 'n/a';
             $this->expiryTimestamp = $expiry;
