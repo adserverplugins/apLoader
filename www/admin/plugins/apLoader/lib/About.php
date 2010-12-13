@@ -14,6 +14,7 @@ abstract class AP_Loader_About
     protected $plugin;
     protected $encoded;
     protected $license;
+    protected $domain;
     protected $expiryTimestamp;
     protected $expiryDate;
     protected $expiryDays;
@@ -27,9 +28,11 @@ abstract class AP_Loader_About
 
         if ($this->encoded) {
             $license = $this->getConst('licensed_to');
+            $domain = $this->getConst('domain');
             $expiry = $this->getConst('expire_date');
 
             $this->license = $license ? $license : 'n/a';
+            $this->domain  = $domain ? $domain : 'n/a';
             $this->expiryTimestamp = $expiry;
             $this->expiryDate = $expiry ? date('Y-m-d H:i:s', $expiry) : 'n/a';
             $this->expiryDays = $expiry ? floor(($expiry - time()) / 86400) : 'n/a';
@@ -60,6 +63,7 @@ abstract class AP_Loader_About
             <h4>This plugin is encoded</h4>
             <ul>
                 <li>Licensed to: <?php echo $this->license; ?></li>
+                <li>Domain name: <?php echo $this->domain; ?></li>
                 <li>Expire date: <?php echo $this->expiryDate; ?></li>
                 <li>Days remaining: <?php echo $this->expiryDays; ?></li>
             </ul>
