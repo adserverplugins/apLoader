@@ -3,7 +3,7 @@
 
 <plugin>
     <name>apLoader</name>
-    <creationDate>2010-12-13</creationDate>
+    <creationDate>2013-02-06</creationDate>
     <author>AdserverPlugins.com</author>
     <authorEmail>info@adserverplugins.com</authorEmail>
     <authorUrl>http://www.adserverplugins.com/</authorUrl>
@@ -11,7 +11,7 @@
         <a href="http://creativecommons.org/licenses/by-nd/3.0/">Creative Commons Attribution-No Derivative Works 3.0 Unported</a>
     ]]></license>
     <description>AdserverPlugins.com Loader Plugin</description>
-    <version>1.1.2</version>
+    <version>1.2.0</version>
     <oxversion>2.8.0</oxversion>
     <extends>admin</extends>
     <install>

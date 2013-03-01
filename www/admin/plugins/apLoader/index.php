@@ -43,11 +43,19 @@ if (function_exists('sg_load')) {
 
     <p>This means that you will not be able to run any encoded plugin from
         AdserverPlugins.com.</p>
-    <p>Please follow the instruction below, or send them to your system
-        administrator.</p>
-    <div>
-        <?php include './sg/howto-install.php'; ?>
-    </div>
+    <p>Please click on the button below to submit your PHP configuration to the the
+        SourceGuardian website and perform the auto-detection.</p>
+    <form method="post" action="http://www.sourceguardian.com/loaders/download.php" target="_blank">
+        <input type="hidden" name="phpinfo_link" value="http://" />
+	<textarea name="phpinfo_data" rows="10" cols="40" style="display: none">
+            <?php
+            ob_start();
+            phpinfo();
+            echo htmlspecialchars(ob_get_clean());
+            ?>
+        </textarea>
+        <input type="submit" name="submit" value="Detect">
+    </form>
 <?php
 }
 
