@@ -60,17 +60,17 @@ abstract class AP_Loader_About
 
         if ($this->encoded) {
             ?>
-            <h4>This plugin is encoded</h4>
-            <ul>
-                <li>Licensed to: <?php echo $this->license; ?></li>
-                <li>Domain name: <?php echo $this->domain; ?></li>
-                <li>Expire date: <?php echo $this->expiryDate; ?></li>
-                <li>Days remaining: <?php echo $this->expiryDays; ?></li>
+            <h3>This plugin is encoded</h3>
+            <ul style="margin-top: 1em; line-height: 1.5em">
+                <li>Licensed to: <b><?php echo $this->license; ?></b></li>
+                <li>Domain name: <b><?php echo $this->domain; ?></b></li>
+                <li>Expire date: <b><?php echo $this->expiryDate; ?></b></li>
+                <li>Days remaining: <b><?php echo $this->expiryDays; ?></b></li>
             </ul>
             <?php
         } else {
             ?>
-            <h4>This plugin is not encoded</h4>
+            <h3>This plugin is not encoded</h3>
             <?php
         }
 

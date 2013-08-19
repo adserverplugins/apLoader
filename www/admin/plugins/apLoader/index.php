@@ -34,16 +34,16 @@ if (function_exists('sg_load')) {
 ?>
     <h3>The Sourceguardian extension is correctly installed.</h3>
 
-    <p>This means that you will be able to run encoded plugins from
+    <p style="margin-top: 1em; line-height: 1.5em">This means that you will be able to run encoded plugins from
         AdserverPlugins.com.</p>
 <?php
 } else {
 ?>
     <h3>The Sourceguardian extension is not installed.</h3>
 
-    <p>This means that you will not be able to run any encoded plugin from
+    <p style="margin-top: 1em; line-height: 1.5em">This means that you will not be able to run any encoded plugin from
         AdserverPlugins.com.</p>
-    <p>Please click on the button below to submit your PHP configuration to the the
+    <p style="margin-top: 1em; line-height: 1.5em">Please click on the button below to submit your PHP configuration to the the
         SourceGuardian website and perform the auto-detection.</p>
     <form method="post" action="http://www.sourceguardian.com/loaders/download.php" target="_blank">
         <input type="hidden" name="phpinfo_link" value="http://" />
