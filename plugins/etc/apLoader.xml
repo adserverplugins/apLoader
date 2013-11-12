@@ -3,15 +3,16 @@
 
 <plugin>
     <name>apLoader</name>
-    <creationDate>2013-02-06</creationDate>
+    <displayName>AdserverPlugins.com Loader</displayName>
+    <creationDate>2013-11-12</creationDate>
     <author>AdserverPlugins.com</author>
     <authorEmail>info@adserverplugins.com</authorEmail>
     <authorUrl>http://www.adserverplugins.com/</authorUrl>
     <license><![CDATA[
         <a href="http://www.adserverplugins.com/about/license">SLA</a>
     ]]></license>
-    <description>AdserverPlugins.com Loader Plugin</description>
-    <version>1.2.0</version>
+    <description>AdserverPlugins.com Plugin Framework</description>
+    <version>1.2.1</version>
     <oxversion>2.8.0</oxversion>
     <type>extension</type>
     <install>
