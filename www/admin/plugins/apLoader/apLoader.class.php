@@ -1,12 +1,10 @@
 <?php
 
 /**
- * apLoader for the OpenX ad server
+ * apLoader for Revive Adserver
  *
  * @author Matteo Beccati
- * @copyright 2010 AdserverPlugins.com - All rights reserved
- *
- * $Id$
+ * @copyright 2010-14 AdserverPlugins.com - All rights reserved
  */
 
 require_once MAX_PATH.'/www/admin/plugins/apLoader/lib/Component.php';
@@ -14,6 +12,27 @@ require_once MAX_PATH.'/www/admin/plugins/apLoader/lib/Component.php';
 class Plugins_admin_apLoader_apLoader extends OX_Component
 {
     static $REGISTER_NAME = 'apLoaderRegister';
+    static $SG_VERSION;
+
+    static function getSgLoaderVersion()
+    {
+        if (!isset(self::$SG_VERSION)) {
+            ob_start();
+            phpinfo(INFO_MODULES);
+            $info = ob_get_clean();
+
+            preg_match('/SourceGuardian Loader Version.*?(\d+\.\d+)/m', $info, $m);
+
+            self::$SG_VERSION = empty($m[1]) ? false : $m[1];
+        }
+
+        return self::$SG_VERSION;
+    }
+
+    static function isSgLoaderOK()
+    {
+        return function_exists('sg_load') && version_compare(self::getSgLoaderVersion(), '10', '>=');
+    }
 
     public function afterLogin()
     {
@@ -50,7 +69,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
     {
         $this->removeRegisterNotification();
 
-        if (!function_exists('sg_load')) {
+        if (!self::isSgLoaderOK()) {
             $url = MAX::constructURL(MAX_URL_ADMIN, 'plugins/apLoader/');
 
             $message = "The Adserverplugins.com loader requires you to perform
@@ -75,7 +94,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
             ->getNotificationManager()
             ->removeNotifications(self::$REGISTER_NAME);
 
-        if (function_exists('sg_load')) {
+        if (self::isSgLoaderOK()) {
             foreach (OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry') as $id) {
                 if ($obj = OX_Component::factoryByComponentIdentifier($id)) {
                     $this->notifyPluginExpiry($obj, false);

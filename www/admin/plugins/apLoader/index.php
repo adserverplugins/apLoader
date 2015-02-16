@@ -1,15 +1,13 @@
 <?php
 
 /**
- * apLoader for the OpenX ad server
+ * apLoader for Revive Adserver
  *
  * @author Matteo Beccati
- * @copyright 2010 AdserverPlugins.com - All rights reserved
- *
- * $Id$
+ * @copyright 2010-14 AdserverPlugins.com - All rights reserved
  */
 
-// Prepare the OpenX environment via standard external OpenX scripts
+// Prepare the environment via standard external scripts
 require_once '../../../../init.php';
 require_once '../../config.php';
 
@@ -29,18 +27,7 @@ $oLoader->scheduleRegisterNotification();
 // OB
 ob_start();
 
-// SG How-to
-if (function_exists('sg_load')) {
 ?>
-    <h3>The Sourceguardian extension is correctly installed.</h3>
-
-    <p style="margin-top: 1em; line-height: 1.5em">This means that you will be able to run encoded plugins from
-        AdserverPlugins.com.</p>
-<?php
-} else {
-?>
-    <h3>The Sourceguardian extension is not installed.</h3>
-
     <p style="margin-top: 1em; line-height: 1.5em">This means that you will not be able to run any encoded plugin from
         AdserverPlugins.com.</p>
     <p style="margin-top: 1em; line-height: 1.5em">Please click on the button below to submit your PHP configuration to the the
@@ -57,6 +44,33 @@ if (function_exists('sg_load')) {
         <input type="submit" name="submit" value="Detect">
     </form>
 <?php
+
+$err = ob_get_clean();
+
+ob_start();
+
+// SG How-to
+if (function_exists('sg_load')) {
+    if (Plugins_admin_apLoader_apLoader::isSgLoaderOK()) {
+?>
+    <h3>The Sourceguardian extension is correctly installed.</h3>
+
+    <p style="margin-top: 1em; line-height: 1.5em">This means that you will be able to run encoded plugins from
+        AdserverPlugins.com.</p>
+<?php
+    } else {
+?>
+    <h3>The Sourceguardian extension is installed, but it's outdated.</h3>
+<?php
+
+        echo $err;
+    }
+} else {
+?>
+    <h3>The Sourceguardian extension is not installed.</h3>
+<?php
+
+    echo $err;
 }
 
 // OB

@@ -1,12 +1,10 @@
 <?php
 
 /**
- * apLoader for the OpenX ad server
+ * apLoader for Revive Adserver
  *
  * @author Matteo Beccati
- * @copyright 2010 AdserverPlugins.com - All rights reserved
- *
- * $Id$
+ * @copyright 2010-14 AdserverPlugins.com - All rights reserved
  */
 
 abstract class AP_Loader_About

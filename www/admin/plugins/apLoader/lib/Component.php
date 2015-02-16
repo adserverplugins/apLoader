@@ -1,12 +1,10 @@
 <?php
 
 /**
- * apLoader for the OpenX ad server
+ * apLoader for Revive Adserver
  *
  * @author Matteo Beccati
- * @copyright 2010 AdserverPlugins.com - All rights reserved
- *
- * $Id$
+ * @copyright 2010-14 AdserverPlugins.com - All rights reserved
  */
 
 require_once MAX_PATH.'/lib/OX/Plugin/Component.php';
@@ -39,7 +37,7 @@ class AP_Loader_Component extends OX_Component
     public function onDisable()
     {
         $this->updateExpiry(false);
-        
+
         return true;
     }
 
