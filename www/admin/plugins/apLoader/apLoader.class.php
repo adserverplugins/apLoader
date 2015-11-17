@@ -131,20 +131,27 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
         if (!function_exists('sg_load')) {
             return;
         }
+
+        $aMenus = array();
+
         $oMenu = OA_Admin_Menu::singleton();
         $aPlugins = OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry');
         foreach ($aPlugins as $id) {
             if ($obj = OX_Component::factoryByComponentIdentifier($id)) {
                 if ($obj->apLoaderMenuEntry()) {
-                    $oMenu->addTo(
-                        'adserverplugins',
-                        new OA_Admin_Menu_Section(
-                            'apAbout-'.$obj->component, $obj->component,
-                            'plugins/' . $obj->group . '/about.php',
-                            false, null, array(), 1, true)
-                    );
+                    $aMenus[$obj->component] = $obj->group;
                 }
             }
+        }
+
+        ksort($aMenus);
+
+        foreach ($aMenus as $component => $group) {
+            $oMenu->addTo('adserverplugins', new OA_Admin_Menu_Section(
+                'apAbout-'.$component, $component,
+                'plugins/'.$group.'/about.php',
+                false, null, array(), 1, true
+            ));
         }
     }
 }
