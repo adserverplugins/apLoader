@@ -22,7 +22,11 @@ class AP_Loader_Component extends OX_Component
             'method' => 'GET',
             'header' => "Cookie: sessionID=".$_COOKIE['sessionID']."\r\n"
         )));
+
+        $expiry = null;
+
         $fp = @fopen($url, 'rb', false, $ctx);
+
         if ($fp) {
             stream_set_timeout($fp, self::HTTP_TIMEOUT);
             $expiry = stream_get_contents($fp);
