@@ -32,7 +32,7 @@ ob_start();
         AdserverPlugins.com.</p>
     <p style="margin-top: 1em; line-height: 1.5em">Please click on the button below to submit your PHP configuration to the the
         SourceGuardian website and perform the auto-detection.</p>
-    <form method="post" action="http://www.sourceguardian.com/loaders/download.php" target="_blank">
+    <form method="post" action="https://www.sourceguardian.com/loaders/download.php" target="_blank">
         <input type="hidden" name="phpinfo_link" value="http://" />
 	<textarea name="phpinfo_data" rows="10" cols="40" style="display: none">
             <?php
