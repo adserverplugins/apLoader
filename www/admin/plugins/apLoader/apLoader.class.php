@@ -7,14 +7,14 @@
  * @copyright 2010-14 AdserverPlugins.com - All rights reserved
  */
 
-require_once MAX_PATH.'/www/admin/plugins/apLoader/lib/Component.php';
+require_once MAX_PATH . '/www/admin/plugins/apLoader/lib/Component.php';
 
 class Plugins_admin_apLoader_apLoader extends OX_Component
 {
-    static $REGISTER_NAME = 'apLoaderRegister';
-    static $SG_VERSION;
+    public static $REGISTER_NAME = 'apLoaderRegister';
+    public static $SG_VERSION;
 
-    static function getSgLoaderVersion()
+    public static function getSgLoaderVersion()
     {
         if (!isset(self::$SG_VERSION)) {
             ob_start();
@@ -29,7 +29,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
         return self::$SG_VERSION;
     }
 
-    static function isSgLoaderOK()
+    public static function isSgLoaderOK()
     {
         return function_exists('sg_load') && version_compare(self::getSgLoaderVersion(), '10', '>=');
     }
@@ -56,10 +56,10 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
     protected function getExpiringPlugins()
     {
         $aPlugins = OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry');
-        $aResult = array();
+        $aResult = [];
         foreach ($aPlugins as $id) {
             list(, , $component) = OX_Component::parseComponentIdentifier($id);
-            $expiry = OA_Dal_ApplicationVariables::get(AP_Loader_Component::VAR_PREFIX.$component);
+            $expiry = OA_Dal_ApplicationVariables::get(AP_Loader_Component::VAR_PREFIX . $component);
             $aResult[$id] = $expiry;
         }
         return $aResult;
@@ -85,7 +85,6 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
                 }
             }
         }
-
     }
 
     public function removeRegisterNotification()
@@ -105,7 +104,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
 
     public function notifyPluginExpiry($obj, $expiry)
     {
-        $register = self::$REGISTER_NAME.'_'.$obj->component;
+        $register = self::$REGISTER_NAME . '_' . $obj->component;
         if ($expiry) {
             $url = MAX::constructURL(MAX_URL_ADMIN, "plugins/{$obj->group}/about.php");
             $days = floor(($expiry - time()) / 86400);
@@ -132,7 +131,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
             return;
         }
 
-        $aMenus = array();
+        $aMenus = [];
 
         $oMenu = OA_Admin_Menu::singleton();
         $aPlugins = OX_Component::getListOfRegisteredComponentsForHook('apLoaderMenuEntry');
@@ -148,9 +147,14 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
 
         foreach ($aMenus as $component => $group) {
             $oMenu->addTo('adserverplugins', new OA_Admin_Menu_Section(
-                'apAbout-'.$component, $component,
-                'plugins/'.$group.'/about.php',
-                false, null, array(), 1, true
+                'apAbout-' . $component,
+                $component,
+                'plugins/' . $group . '/about.php',
+                false,
+                null,
+                [],
+                1,
+                true
             ));
         }
     }

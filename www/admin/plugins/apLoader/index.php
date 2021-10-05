@@ -11,7 +11,7 @@
 require_once '../../../../init.php';
 require_once '../../config.php';
 
-require_once dirname(__FILE__).'/apLoader.class.php';
+require_once dirname(__FILE__) . '/apLoader.class.php';
 
 // Limit access to the administrator
 OA_Permission::enforceAccount(OA_ACCOUNT_ADMIN);
@@ -52,21 +52,21 @@ ob_start();
 // SG How-to
 if (function_exists('sg_load')) {
     if (Plugins_admin_apLoader_apLoader::isSgLoaderOK()) {
-?>
+        ?>
     <h3>The Sourceguardian extension is correctly installed.</h3>
 
     <p style="margin-top: 1em; line-height: 1.5em">This means that you will be able to run encoded plugins from
         AdserverPlugins.com.</p>
 <?php
     } else {
-?>
+        ?>
     <h3>The Sourceguardian extension is installed, but it's outdated.</h3>
 <?php
 
         echo $err;
     }
 } else {
-?>
+    ?>
     <h3>The Sourceguardian extension is not installed.</h3>
 <?php
 

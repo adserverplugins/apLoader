@@ -30,7 +30,7 @@ abstract class AP_Loader_About
             $expiry = $this->getConst('expire_date');
 
             $this->license = $license ? $license : 'n/a';
-            $this->domain  = $domain ? $domain : 'n/a';
+            $this->domain = $domain ? $domain : 'n/a';
             $this->expiryTimestamp = $expiry;
             $this->expiryDate = $expiry ? date('Y-m-d H:i:s', $expiry) : 'n/a';
             $this->expiryDays = $expiry ? floor(($expiry - time()) / 86400) : 'n/a';
@@ -54,7 +54,7 @@ abstract class AP_Loader_About
         $oLoader = OX_Component::factory('admin', 'apLoader');
         $oLoader->updateMenu();
 
-        phpAds_PageHeader('apAbout-'.$this->plugin, '', '../../');
+        phpAds_PageHeader('apAbout-' . $this->plugin, '', '../../');
 
         if ($this->encoded) {
             ?>
