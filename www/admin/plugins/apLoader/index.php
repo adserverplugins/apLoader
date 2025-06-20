@@ -30,16 +30,17 @@ ob_start();
 ?>
     <p style="margin-top: 1em; line-height: 1.5em">This means that you will not be able to run any encoded plugin from
         AdserverPlugins.com.</p>
-    <p style="margin-top: 1em; line-height: 1.5em">Please click on the button below to submit your PHP configuration to the the
+    <p style="margin-top: 1em; line-height: 1.5em">Please click on the button below to submit your PHP configuration to the
         SourceGuardian website and perform the auto-detection.</p>
     <form method="post" action="https://www.sourceguardian.com/loaders/download.php" target="_blank">
         <input type="hidden" name="phpinfo_link" value="http://" />
-	<textarea name="phpinfo_data" rows="10" cols="40" style="display: none">
-            <?php
-            ob_start();
-            phpinfo();
-            echo htmlspecialchars(ob_get_clean());
-            ?>
+	<textarea name="phpinfo_data" rows="10" cols="40" style="display: none"><?php
+
+ob_start();
+phpinfo();
+echo htmlspecialchars(ob_get_clean());
+
+?>
         </textarea>
         <input type="submit" name="submit" value="Detect">
     </form>

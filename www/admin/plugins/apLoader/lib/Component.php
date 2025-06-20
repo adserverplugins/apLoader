@@ -20,7 +20,7 @@ class AP_Loader_Component extends OX_Component
 
         $ctx = stream_context_create(['http' => [
             'method' => 'GET',
-            'header' => "Cookie: sessionID=" . $_COOKIE['sessionID'] . "\r\n"
+            'header' => "Cookie: sessionID=" . $_COOKIE['sessionID'] . "\r\n",
         ]]);
 
         $expiry = null;

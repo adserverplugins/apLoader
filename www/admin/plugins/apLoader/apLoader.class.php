@@ -154,7 +154,7 @@ class Plugins_admin_apLoader_apLoader extends OX_Component
                 null,
                 [],
                 1,
-                true
+                true,
             ));
         }
     }
