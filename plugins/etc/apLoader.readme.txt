@@ -1,0 +1,9 @@
+
+Change Log
+==========
+
+v1.4.1
+    * Fixed typo in the instructions screen
+
+v1.4.0
+    * Increased compatibility with recent PHP versions
